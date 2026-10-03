@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destination Details - Tourism Management System</title>
+  <meta name="description" content="Detailed travel guide, attractions, activities, and packages for tourist destinations.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <i class="fas fa-globe-asia"></i>
+        <span>GlobeTrek</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="destinations.html" class="nav-link active">Destinations</a></li>
+        <li><a href="packages.html" class="nav-link">Tour Packages</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Rendered dynamically by api.js -->
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Large Destination Hero Header -->
+  <div id="details-hero" class="details-hero">
+    <div class="details-hero-overlay"></div>
+    <div class="details-hero-content">
+      <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
+        <a href="destinations.html" style="color: #cbd5e1; font-size: 0.9rem;"><i class="fas fa-chevron-left"></i> All Destinations</a>
+      </div>
+      <h1 id="dest-title" class="font-serif" style="font-size: 3.2rem; color: #fff; margin-bottom: 0.5rem;">Destination Name</h1>
+      <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+        <span id="dest-location" style="font-size: 1.15rem; color: #5eead4;"><i class="fas fa-map-marker-alt"></i> Location</span>
+        <span id="dest-cost-badge" class="badge-status confirmed" style="font-size: 0.95rem; padding: 0.4rem 1rem;">Approx. Cost</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Grid -->
+  <main class="section-wrapper" style="padding-top: 2rem;">
+    <div class="details-grid">
+      <!-- Left Column: Information & Attractions -->
+      <div>
+        <!-- Overview -->
+        <div class="details-box">
+          <h3><i class="fas fa-file-alt"></i> About Destination</h3>
+          <p id="dest-description" style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; white-space: pre-line;">
+            Loading detailed information...
+          </p>
+        </div>
+
+        <!-- Best Time & Travel Info -->
+        <div class="details-box">
+          <h3><i class="fas fa-calendar-check"></i> Best Time to Visit & Logistics</h3>
+          <div style="background: var(--bg-body); padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.25rem; border-left: 4px solid var(--primary);">
+            <strong style="color: var(--primary); display: block; margin-bottom: 0.3rem;">Ideal Season:</strong>
+            <span id="dest-best-time" style="font-size: 1rem; color: var(--text-main);">October to March</span>
+          </div>
+
+          <div style="background: var(--bg-body); padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid #0284c7;">
+            <strong style="color: #0284c7; display: block; margin-bottom: 0.3rem;"><i class="fas fa-plane"></i> How to Reach & Travel Logistics:</strong>
+            <p id="dest-travel-info" style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin: 0;">
+              Flight, train, and bus connectivity information.
+            </p>
+          </div>
+        </div>
+
+        <!-- Key Attractions -->
+        <div class="details-box">
+          <h3><i class="fas fa-monument"></i> Major Sightseeing Attractions</h3>
+          <div id="dest-attractions-list" style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Available Activities -->
+        <div class="details-box">
+          <h3><i class="fas fa-hiking"></i> Recommended Activities & Experiences</h3>
+          <div id="dest-activities-list" class="activities-list">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Related Tour Packages -->
+        <div class="details-box">
+          <h3><i class="fas fa-boxes-packing"></i> Related Tour Packages</h3>
+          <div id="related-packages-grid" class="cards-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Quick Booking Widget -->
+      <div>
+        <div class="booking-quick-card">
+          <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem;">Plan Your Trip</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+            Customize your tour dates and hotel choices with instant confirmation.
+          </p>
+
+          <div style="background: var(--bg-body); padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; text-align: center;">
+            <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">Starting from</span>
+            <div id="quick-cost" style="font-size: 2rem; font-weight: 800; color: var(--primary);">₹15,000</div>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">per person (All-Inclusive options)</span>
+          </div>
+
+          <div style="margin-bottom: 1.5rem;">
+            <ul style="font-size: 0.9rem; color: var(--text-muted); line-height: 2;">
+              <li><i class="fas fa-check" style="color: var(--primary); margin-right: 0.4rem;"></i> Guaranteed Best Prices</li>
+              <li><i class="fas fa-check" style="color: var(--primary); margin-right: 0.4rem;"></i> Verified 4-Star Accommodations</li>
+              <li><i class="fas fa-check" style="color: var(--primary); margin-right: 0.4rem;"></i> Free Cancellation up to 72 hrs</li>
+              <li><i class="fas fa-check" style="color: var(--primary); margin-right: 0.4rem;"></i> Experienced Local Chauffeurs</li>
+            </ul>
+          </div>
+
+          <a id="quick-book-btn" href="booking.html" class="btn-custom btn-accent-gradient" style="width: 100%; font-size: 1.05rem; padding: 0.85rem;">
+            <i class="fas fa-bolt"></i> Book This Vacation
+          </a>
+
+          <div style="text-align: center; margin-top: 1rem;">
+            <a href="contact.html" style="font-size: 0.85rem; color: var(--primary); font-weight: 600;">
+              <i class="fas fa-question-circle"></i> Have questions? Contact our experts
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo">
+          <i class="fas fa-globe-asia"></i>
+          <span>GlobeTrek</span>
+        </a>
+        <p class="footer-about">
+          GlobeTrek is an enterprise Tourism Management System dedicated to presenting the mesmerizing beauty, culture, and hospitality of world-class tourist destinations.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="footer-link"><i class="fas fa-angle-right"></i> Home</a></li>
+          <li><a href="destinations.html" class="footer-link"><i class="fas fa-angle-right"></i> Destinations</a></li>
+          <li><a href="packages.html" class="footer-link"><i class="fas fa-angle-right"></i> Tour Packages</a></li>
+          <li><a href="about.html" class="footer-link"><i class="fas fa-angle-right"></i> About Us</a></li>
+          <li><a href="contact.html" class="footer-link"><i class="fas fa-angle-right"></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Contact Support</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+91 9172534084</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>support@tourism-system.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 Tourism Management System. All rights reserved.</div>
+      <div>Designed for College & Academic Capstone Presentation</div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/destination-details.js"></script>
+</body>
+</html>

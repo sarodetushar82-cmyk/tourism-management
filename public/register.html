@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - Tourism Management System</title>
+  <meta name="description" content="Register a new traveler account with Tourism Management System to book and manage vacation tours.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between;">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <i class="fas fa-globe-asia"></i>
+        <span>GlobeTrek</span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn-custom btn-outline-custom btn-sm-custom">
+          <i class="fas fa-sign-in-alt"></i> Sign In Instead
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Register Form Container -->
+  <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem;">
+    <div class="form-card" style="max-width: 520px; width: 100%;">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span class="section-tag">Join GlobeTrek</span>
+        <h2 style="font-size: 1.85rem; margin-bottom: 0.4rem;">Create Traveler Account</h2>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Start planning your next holiday with special member fares & instant bookings.
+        </p>
+      </div>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label for="reg-name" class="form-label">Full Name *</label>
+          <div style="position: relative;">
+            <input type="text" id="reg-name" class="form-control-custom" placeholder="e.g. John Doe" required style="padding-left: 2.5rem;">
+            <i class="fas fa-user" style="position: absolute; left: 14px; top: 14px; color: var(--text-muted);"></i>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reg-email" class="form-label">Email Address *</label>
+            <div style="position: relative;">
+              <input type="email" id="reg-email" class="form-control-custom" placeholder="john@example.com" required style="padding-left: 2.5rem;">
+              <i class="fas fa-envelope" style="position: absolute; left: 14px; top: 14px; color: var(--text-muted);"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-phone" class="form-label">Phone Number *</label>
+            <div style="position: relative;">
+              <input type="tel" id="reg-phone" class="form-control-custom" placeholder="+91 9876543210" required style="padding-left: 2.5rem;">
+              <i class="fas fa-phone" style="position: absolute; left: 14px; top: 14px; color: var(--text-muted);"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="reg-password" class="form-label">Password * (min 6 chars)</label>
+            <div style="position: relative;">
+              <input type="password" id="reg-password" class="form-control-custom" placeholder="••••••••" required style="padding-left: 2.5rem;">
+              <i class="fas fa-lock" style="position: absolute; left: 14px; top: 14px; color: var(--text-muted);"></i>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-confirm-password" class="form-label">Confirm Password *</label>
+            <div style="position: relative;">
+              <input type="password" id="reg-confirm-password" class="form-control-custom" placeholder="••••••••" required style="padding-left: 2.5rem;">
+              <i class="fas fa-lock" style="position: absolute; left: 14px; top: 14px; color: var(--text-muted);"></i>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="register-btn" class="btn-custom btn-primary-gradient" style="width: 100%; padding: 0.85rem; font-size: 1rem; margin-top: 1rem;">
+          Register Now <i class="fas fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.75rem; font-size: 0.92rem; color: var(--text-muted);">
+        Already have an account? 
+        <a href="login.html" style="color: var(--primary); font-weight: 700;">Sign In Here</a>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align: center; padding: 1.5rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border-color);">
+    &copy; 2026 Tourism Management System. All rights reserved.
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

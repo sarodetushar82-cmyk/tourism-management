@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrator Control Center - Tourism Management System</title>
+  <meta name="description" content="Admin Dashboard to manage destinations, tour packages, bookings, registered users, and contact messages.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <i class="fas fa-shield-alt"></i>
+        <span>GlobeTrek Admin</span>
+      </div>
+
+      <nav class="admin-nav">
+        <div class="admin-nav-item active" data-section="overview">
+          <i class="fas fa-chart-pie"></i>
+          <span>Dashboard Stats</span>
+        </div>
+        <div class="admin-nav-item" data-section="destinations">
+          <i class="fas fa-map-marked-alt"></i>
+          <span>Destinations</span>
+        </div>
+        <div class="admin-nav-item" data-section="packages">
+          <i class="fas fa-suitcase-rolling"></i>
+          <span>Tour Packages</span>
+        </div>
+        <div class="admin-nav-item" data-section="bookings">
+          <i class="fas fa-ticket-alt"></i>
+          <span>Manage Bookings</span>
+        </div>
+        <div class="admin-nav-item" data-section="users">
+          <i class="fas fa-users-cog"></i>
+          <span>Registered Users</span>
+        </div>
+        <div class="admin-nav-item" data-section="messages">
+          <i class="fas fa-envelope-open-text"></i>
+          <span>Inquiries</span>
+        </div>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <a href="index.html" class="btn-custom btn-glass btn-sm-custom" style="width: 100%; margin-bottom: 0.5rem;" target="_blank">
+          <i class="fas fa-external-link-alt"></i> View Live Site
+        </a>
+        <button onclick="Auth.logout()" class="btn-custom btn-outline-custom btn-sm-custom" style="width: 100%; color: #ef4444; border-color: #ef4444;">
+          <i class="fas fa-sign-out-alt"></i> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="admin-main">
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div class="admin-title-area">
+          <h2>Administrator Portal</h2>
+          <p>Tourism Operations & Content Management System</p>
+        </div>
+
+        <div class="admin-user-profile">
+          <div class="admin-avatar">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <div>
+            <div style="font-weight: 700; font-size: 0.95rem;">System Admin</div>
+            <div style="font-size: 0.78rem; color: #10b981; font-weight: 600;">● Super Administrator</div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Section 1: Dashboard Overview -->
+      <div id="section-overview" class="admin-content admin-section-view">
+        <!-- KPI Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon teal"><i class="fas fa-users"></i></div>
+            <div class="stat-info">
+              <h4 id="stat-total-users">0</h4>
+              <span>Registered Users</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon blue"><i class="fas fa-ticket-alt"></i></div>
+            <div class="stat-info">
+              <h4 id="stat-total-bookings">0</h4>
+              <span>Total Bookings</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon orange"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="stat-info">
+              <h4 id="stat-total-destinations">0</h4>
+              <span>Destinations</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon purple"><i class="fas fa-cubes"></i></div>
+            <div class="stat-info">
+              <h4 id="stat-total-packages">0</h4>
+              <span>Tour Packages</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-rupee-sign"></i></div>
+            <div class="stat-info">
+              <h4 id="stat-total-revenue">₹0</h4>
+              <span>Confirmed Revenue</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+            <div class="stat-info">
+              <h4 id="stat-pending-bookings">0</h4>
+              <span>Pending Approvals</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Tables Split -->
+        <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 1.5rem;">
+          <!-- Recent Bookings -->
+          <div class="data-panel">
+            <div class="panel-header">
+              <h3><i class="fas fa-receipt" style="color: var(--primary);"></i> Recent Bookings</h3>
+              <button onclick="document.querySelector('[data-section=bookings]').click()" class="btn-custom btn-outline-custom btn-sm-custom">View All</button>
+            </div>
+            <div class="admin-table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Ref #</th>
+                    <th>Customer</th>
+                    <th>Destination</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-bookings-tbody">
+                  <!-- Populated via admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Recent Inquiries -->
+          <div class="data-panel">
+            <div class="panel-header">
+              <h3><i class="fas fa-comment-dots" style="color: #0284c7;"></i> Latest Messages</h3>
+              <button onclick="document.querySelector('[data-section=messages]').click()" class="btn-custom btn-outline-custom btn-sm-custom">View All</button>
+            </div>
+            <div class="admin-table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Sender</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-messages-tbody">
+                  <!-- Populated via admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Destinations Management -->
+      <div id="section-destinations" class="admin-content admin-section-view" style="display: none;">
+        <div class="data-panel">
+          <div class="panel-header">
+            <h3>Destinations Directory</h3>
+            <div class="panel-actions">
+              <button onclick="openAddDestinationModal()" class="btn-custom btn-primary-gradient btn-sm-custom">
+                <i class="fas fa-plus"></i> Add Destination
+              </button>
+            </div>
+          </div>
+          <div class="admin-table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Photo</th>
+                  <th>Destination Name</th>
+                  <th>Location</th>
+                  <th>Approx Cost</th>
+                  <th>Best Time</th>
+                  <th>Featured</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="destinations-tbody">
+                <!-- Populated via admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Tour Packages Management -->
+      <div id="section-packages" class="admin-content admin-section-view" style="display: none;">
+        <div class="data-panel">
+          <div class="panel-header">
+            <h3>Holiday Tour Packages</h3>
+            <div class="panel-actions">
+              <button onclick="openAddPackageModal()" class="btn-custom btn-primary-gradient btn-sm-custom">
+                <i class="fas fa-plus"></i> Add Tour Package
+              </button>
+            </div>
+          </div>
+          <div class="admin-table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Preview</th>
+                  <th>Package Name</th>
+                  <th>Destination</th>
+                  <th>Duration</th>
+                  <th>Price/Person</th>
+                  <th>Featured</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="packages-tbody">
+                <!-- Populated via admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Bookings Management -->
+      <div id="section-bookings" class="admin-content admin-section-view" style="display: none;">
+        <div class="data-panel">
+          <div class="panel-header">
+            <h3>All Customer Bookings</h3>
+          </div>
+          <div class="admin-table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Booking Ref</th>
+                  <th>Customer Info</th>
+                  <th>Destination</th>
+                  <th>Trip Date</th>
+                  <th>Travelers</th>
+                  <th>Total Cost</th>
+                  <th>Status Selector</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody id="bookings-tbody">
+                <!-- Populated via admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 5: Registered Users Management -->
+      <div id="section-users" class="admin-content admin-section-view" style="display: none;">
+        <div class="data-panel">
+          <div class="panel-header">
+            <h3>Registered Traveler Accounts</h3>
+          </div>
+          <div class="admin-table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Registration Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="users-tbody">
+                <!-- Populated via admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 6: Contact Inquiries -->
+      <div id="section-messages" class="admin-content admin-section-view" style="display: none;">
+        <div class="data-panel">
+          <div class="panel-header">
+            <h3>Visitor Contact Messages</h3>
+          </div>
+          <div class="admin-table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Contact Details</th>
+                  <th>Subject</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="messages-tbody">
+                <!-- Populated via admin.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Add/Edit Destination -->
+  <div id="dest-modal" class="admin-modal-overlay">
+    <div class="admin-modal">
+      <div class="modal-header">
+        <h3 id="dest-modal-title">Add New Destination</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="dest-form">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Destination Name *</label>
+              <input type="text" id="dest-name" class="form-control-custom" placeholder="e.g. Goa" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Location / State *</label>
+              <input type="text" id="dest-location-input" class="form-control-custom" placeholder="e.g. Western India" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Approx Cost (₹) *</label>
+              <input type="number" id="dest-approx-cost" class="form-control-custom" placeholder="15000" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Best Time to Visit</label>
+              <input type="text" id="dest-best-time-input" class="form-control-custom" placeholder="e.g. October to March">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">High-Resolution Image URL *</label>
+            <input type="url" id="dest-image-url" class="form-control-custom" placeholder="https://images.unsplash.com/..." required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Short Description * (1-2 sentences)</label>
+            <textarea id="dest-short-desc" class="form-control-custom" rows="2" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Detailed Description</label>
+            <textarea id="dest-detailed-desc" class="form-control-custom" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Attractions (Comma separated)</label>
+            <input type="text" id="dest-attractions-input" class="form-control-custom" placeholder="Baga Beach, Fort Aguada, Dudhsagar Falls">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Available Activities (Comma separated)</label>
+            <input type="text" id="dest-activities-input" class="form-control-custom" placeholder="Scuba Diving, Parasailing, Sunset Cruise">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Travel & Connectivity Information</label>
+            <input type="text" id="dest-travel-info-input" class="form-control-custom" placeholder="Nearest airport, train station, highway routes">
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+            <input type="checkbox" id="dest-is-popular" style="width: 18px; height: 18px;">
+            <label for="dest-is-popular" class="form-label" style="margin-bottom: 0; cursor: pointer;">
+              Highlight as Popular Destination on Home Page
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-custom btn-outline-custom modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn-custom btn-primary-gradient">Save Destination</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add/Edit Tour Package -->
+  <div id="pkg-modal" class="admin-modal-overlay">
+    <div class="admin-modal">
+      <div class="modal-header">
+        <h3 id="pkg-modal-title">Add New Tour Package</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <form id="pkg-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Package Name *</label>
+            <input type="text" id="pkg-name-input" class="form-control-custom" placeholder="e.g. Goa Tropical Beach Escapade" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Destination Name *</label>
+              <input type="text" id="pkg-dest-name-input" class="form-control-custom" placeholder="e.g. Goa" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Price Per Person (₹) *</label>
+              <input type="number" id="pkg-price-input" class="form-control-custom" placeholder="14999" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Duration Days *</label>
+              <input type="number" id="pkg-days-input" class="form-control-custom" min="1" max="30" value="4" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Duration Nights *</label>
+              <input type="number" id="pkg-nights-input" class="form-control-custom" min="0" max="30" value="3" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Package Image URL *</label>
+            <input type="url" id="pkg-image-input" class="form-control-custom" placeholder="https://images.unsplash.com/..." required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Included Services (Comma separated) *</label>
+            <textarea id="pkg-services-input" class="form-control-custom" rows="2" placeholder="4-Star Resort, Buffet Breakfast, AC Cab Sightseeing, Airport Transfers" required></textarea>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+            <input type="checkbox" id="pkg-is-featured" style="width: 18px; height: 18px;">
+            <label for="pkg-is-featured" class="form-label" style="margin-bottom: 0; cursor: pointer;">
+              Highlight as Featured Tour Package on Home Page
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-custom btn-outline-custom modal-cancel-btn">Cancel</button>
+          <button type="submit" class="btn-custom btn-primary-gradient">Save Package</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: View Contact Message -->
+  <div id="message-modal" class="admin-modal-overlay">
+    <div class="admin-modal">
+      <div class="modal-header">
+        <h3>Customer Inquiry Message</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+          <div style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase;">From:</div>
+          <strong id="view-msg-name" style="font-size: 1.1rem; color: var(--text-main);">Sender Name</strong>
+          <div style="color: var(--text-muted); font-size: 0.9rem;">
+            <span id="view-msg-email">email@example.com</span> | Phone: <span id="view-msg-phone">+91 0000000000</span>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <div style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase;">Subject:</div>
+          <strong id="view-msg-subject" style="font-size: 1rem; color: var(--primary);">Tour Inquiry</strong>
+        </div>
+
+        <div style="background: var(--bg-body); padding: 1.25rem; border-radius: var(--radius-md); font-size: 0.95rem; line-height: 1.6; white-space: pre-line;" id="view-msg-body">
+          Message content goes here.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a id="reply-email-btn" href="#" class="btn-custom btn-primary-gradient">
+          <i class="fas fa-reply"></i> Reply via Email
+        </a>
+        <button type="button" class="btn-custom btn-outline-custom modal-cancel-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

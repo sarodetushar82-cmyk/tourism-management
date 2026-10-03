@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourist Destinations - Tourism Management System</title>
+  <meta name="description" content="Explore India's premier holiday destinations with photos, approximate costs, travel tips, and attractions.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <i class="fas fa-globe-asia"></i>
+        <span>GlobeTrek</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="destinations.html" class="nav-link active">Destinations</a></li>
+        <li><a href="packages.html" class="nav-link">Tour Packages</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Rendered dynamically by api.js -->
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Page Header Banner -->
+  <div style="background: linear-gradient(135deg, #0f172a 0%, #0f766e 100%); color: #fff; padding: 4rem 1.5rem 3rem 1.5rem; text-align: center;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <span class="section-tag" style="color: #5eead4;">Incredible Journeys</span>
+      <h1 style="color: #fff; font-size: 2.75rem; margin-bottom: 0.8rem;" class="font-serif">Explore Destinations</h1>
+      <p style="color: #cbd5e1; font-size: 1.1rem;">
+        From golden beaches and backwaters to majestic forts and snow-capped peaks, discover your perfect getaway.
+      </p>
+    </div>
+  </div>
+
+  <!-- Destinations Catalog Section -->
+  <main class="section-wrapper">
+    <!-- Filter and Search Toolbar -->
+    <div class="filter-toolbar">
+      <div class="filter-group">
+        <span class="filter-label"><i class="fas fa-filter"></i> Filters:</span>
+        <button class="filter-pill active" data-filter="all">All</button>
+        <button class="filter-pill" data-filter="popular"><i class="fas fa-fire"></i> Most Popular</button>
+      </div>
+
+      <div class="filter-group">
+        <select id="price-filter" class="filter-input" aria-label="Filter by Budget">
+          <option value="all">Any Budget</option>
+          <option value="under-15000">Under ₹15,000</option>
+          <option value="15000-20000">₹15,000 - ₹20,000</option>
+          <option value="above-20000">Above ₹20,000</option>
+        </select>
+
+        <div style="position: relative;">
+          <input type="text" id="dest-search-input" class="filter-input" placeholder="Search destination, city, or attractions..." style="min-width: 250px;">
+          <i class="fas fa-search" style="position: absolute; right: 12px; top: 12px; color: var(--text-muted);"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Count -->
+    <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+      <span id="dest-count" style="font-size: 0.95rem; font-weight: 600; color: var(--text-muted);">
+        Loading destinations...
+      </span>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="cards-grid" id="destinations-grid">
+      <!-- Injected via destinations.js -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo">
+          <i class="fas fa-globe-asia"></i>
+          <span>GlobeTrek</span>
+        </a>
+        <p class="footer-about">
+          GlobeTrek is an enterprise Tourism Management System dedicated to presenting the mesmerizing beauty, culture, and hospitality of world-class tourist destinations.
+        </p>
+        <div class="footer-social-links">
+          <a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social-link"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="footer-link"><i class="fas fa-angle-right"></i> Home</a></li>
+          <li><a href="destinations.html" class="footer-link"><i class="fas fa-angle-right"></i> Destinations</a></li>
+          <li><a href="packages.html" class="footer-link"><i class="fas fa-angle-right"></i> Tour Packages</a></li>
+          <li><a href="about.html" class="footer-link"><i class="fas fa-angle-right"></i> About Us</a></li>
+          <li><a href="contact.html" class="footer-link"><i class="fas fa-angle-right"></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Popular Escapes</h4>
+        <ul class="footer-links-list">
+          <li><a href="destination-details.html?id=1" class="footer-link"><i class="fas fa-umbrella-beach"></i> Goa Beaches</a></li>
+          <li><a href="destination-details.html?id=2" class="footer-link"><i class="fas fa-mountain"></i> Manali Hills</a></li>
+          <li><a href="destination-details.html?id=3" class="footer-link"><i class="fas fa-water"></i> Kashmir Valleys</a></li>
+          <li><a href="destination-details.html?id=4" class="footer-link"><i class="fas fa-archway"></i> Jaipur Palaces</a></li>
+          <li><a href="destination-details.html?id=5" class="footer-link"><i class="fas fa-ship"></i> Kerala Backwaters</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Contact Info</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Kundeshwar Palace, Sidhivinayak Nagar, Medankar Wadi, Chakan, Pune - 410501</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+91 9172534084</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>support@tourism-system.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 Tourism Management System. All rights reserved.</div>
+      <div>Designed for College & Academic Capstone Presentation</div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/destinations.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In - Tourism Management System</title>
+  <meta name="description" content="Sign in to your Tourism Management System user account or access administrator panel.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between;">
+
+  <!-- Simple Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <i class="fas fa-globe-asia"></i>
+        <span>GlobeTrek</span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="btn-custom btn-outline-custom btn-sm-custom">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Login Main Content -->
+  <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem;">
+    <div class="form-card" style="max-width: 460px; width: 100%;">
+      <!-- Role Switcher Tabs -->
+      <div style="display: flex; background: var(--bg-body); padding: 0.35rem; border-radius: var(--radius-md); margin-bottom: 2rem; border: 1px solid var(--border-color);">
+        <button type="button" id="tab-user" class="btn-custom active" style="flex: 1; padding: 0.55rem; font-size: 0.9rem; background: var(--primary); color: #fff; border-radius: var(--radius-sm); border: none;">
+          <i class="fas fa-user"></i> Traveler Login
+        </button>
+        <button type="button" id="tab-admin" class="btn-custom" style="flex: 1; padding: 0.55rem; font-size: 0.9rem; background: transparent; color: var(--text-muted); border-radius: var(--radius-sm); border: none;">
+          <i class="fas fa-shield-alt"></i> Admin Login
+        </button>
+      </div>
+
+      <div style="text-align: center; margin-bottom: 1.75rem;">
+        <h2 id="login-heading" style="font-size: 1.8rem; margin-bottom: 0.4rem;">User Sign In</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          Access your bookings, itineraries, and vacation profile.
+        </p>
+      </div>
+
+      <form id="login-form">
+        <input type="hidden" id="login-role" value="user">
+
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <div style="position: relative;">
+            <input type="email" id="email" class="form-control-custom" placeholder="name@example.com" required style="padding-left: 2.5rem;">
+            <i class="fas fa-envelope" style="position: absolute; left: 14px; top: 14px; color: var(--text-muted);"></i>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+            <label for="password" class="form-label" style="margin-bottom: 0;">Password</label>
+            <a href="javascript:alert('For demo purposes: User password is user123, Admin password is admin123.')" style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">
+              Forgot password?
+            </a>
+          </div>
+          <div style="position: relative;">
+            <input type="password" id="password" class="form-control-custom" placeholder="Enter your password" required style="padding-left: 2.5rem;">
+            <i class="fas fa-lock" style="position: absolute; left: 14px; top: 14px; color: var(--text-muted);"></i>
+          </div>
+        </div>
+
+        <button type="submit" id="login-btn" class="btn-custom btn-primary-gradient" style="width: 100%; padding: 0.85rem; font-size: 1rem; margin-top: 1rem;">
+          Sign In <i class="fas fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <!-- Demo Credentials Quick Helper for College Project Evaluation -->
+      <div style="margin-top: 1.75rem; padding: 1rem; background: var(--bg-body); border-radius: var(--radius-md); border: 1px dashed var(--border-color); font-size: 0.85rem; text-align: center;">
+        <span style="font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 0.5rem;">
+          Quick Demo Credentials (Click to auto-fill):
+        </span>
+        <div style="display: flex; gap: 0.5rem; justify-content: center;">
+          <button type="button" id="fill-user-demo" class="btn-custom btn-outline-custom btn-sm-custom" style="font-size: 0.8rem;">
+            Fill User Demo
+          </button>
+          <button type="button" id="fill-admin-demo" class="btn-custom btn-outline-custom btn-sm-custom" style="font-size: 0.8rem;">
+            Fill Admin Demo
+          </button>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 1.5rem; font-size: 0.92rem; color: var(--text-muted);">
+        Don't have an account yet? 
+        <a href="register.html" style="color: var(--primary); font-weight: 700;">Create Account</a>
+      </div>
+    </div>
+  </main>
+
+  <footer style="text-align: center; padding: 1.5rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border-color);">
+    &copy; 2026 Tourism Management System. All rights reserved.
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour Packages - Tourism Management System</title>
+  <meta name="description" content="Browse all-inclusive holiday packages with hotel stays, guided tours, and breakfast.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <i class="fas fa-globe-asia"></i>
+        <span>GlobeTrek</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+        <li><a href="packages.html" class="nav-link active">Tour Packages</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Rendered dynamically by api.js -->
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <div style="background: linear-gradient(135deg, #0f172a 0%, #0369a1 100%); color: #fff; padding: 4rem 1.5rem 3rem 1.5rem; text-align: center;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <span class="section-tag" style="color: #38bdf8;">All-Inclusive Holidays</span>
+      <h1 style="color: #fff; font-size: 2.75rem; margin-bottom: 0.8rem;" class="font-serif">Curated Tour Packages</h1>
+      <p style="color: #cbd5e1; font-size: 1.1rem;">
+        Complete holiday experiences with luxury stays, guided city sightseeing, and comfortable transportation.
+      </p>
+    </div>
+  </div>
+
+  <!-- Packages Catalog Section -->
+  <main class="section-wrapper">
+    <!-- Filter Toolbar -->
+    <div class="filter-toolbar">
+      <div class="filter-group">
+        <select id="pkg-dest-filter" class="filter-input" aria-label="Filter by Destination">
+          <option value="all">All Destinations</option>
+          <!-- Filled dynamically via packages.js -->
+        </select>
+
+        <select id="pkg-duration-filter" class="filter-input" aria-label="Filter by Duration">
+          <option value="all">Any Duration</option>
+          <option value="short">Short Weekend (1-4 Days)</option>
+          <option value="medium">Standard Tour (5-6 Days)</option>
+          <option value="long">Extended Holiday (7+ Days)</option>
+        </select>
+
+        <select id="pkg-price-filter" class="filter-input" aria-label="Filter by Price">
+          <option value="all">Any Price</option>
+          <option value="under-15000">Under ₹15,000</option>
+          <option value="15000-25000">₹15,000 - ₹25,000</option>
+          <option value="above-25000">Above ₹25,000</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <div style="position: relative;">
+          <input type="text" id="pkg-search-input" class="filter-input" placeholder="Search by package name or services..." style="min-width: 250px;">
+          <i class="fas fa-search" style="position: absolute; right: 12px; top: 12px; color: var(--text-muted);"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Count -->
+    <div style="margin-bottom: 1.5rem;">
+      <span id="pkg-count" style="font-size: 0.95rem; font-weight: 600; color: var(--text-muted);">
+        Loading packages...
+      </span>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="cards-grid" id="packages-grid">
+      <!-- Injected via packages.js -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo">
+          <i class="fas fa-globe-asia"></i>
+          <span>GlobeTrek</span>
+        </a>
+        <p class="footer-about">
+          GlobeTrek is an enterprise Tourism Management System dedicated to presenting the mesmerizing beauty, culture, and hospitality of world-class tourist destinations.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="footer-link"><i class="fas fa-angle-right"></i> Home</a></li>
+          <li><a href="destinations.html" class="footer-link"><i class="fas fa-angle-right"></i> Destinations</a></li>
+          <li><a href="packages.html" class="footer-link"><i class="fas fa-angle-right"></i> Tour Packages</a></li>
+          <li><a href="about.html" class="footer-link"><i class="fas fa-angle-right"></i> About Us</a></li>
+          <li><a href="contact.html" class="footer-link"><i class="fas fa-angle-right"></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Support</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+91 9172534084</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>support@tourism-system.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 Tourism Management System. All rights reserved.</div>
+      <div>Designed for College & Academic Capstone Presentation</div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/packages.js"></script>
+</body>
+</html>

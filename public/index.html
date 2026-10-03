@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourism Management System - Explore the World With Us</title>
+  <meta name="description" content="Discover India's top tourist destinations, curated tour packages, and seamless vacation bookings with our modern Tourism Management System.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <i class="fas fa-globe-asia"></i>
+        <span>GlobeTrek</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+        <li><a href="packages.html" class="nav-link">Tour Packages</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Rendered dynamically by api.js -->
+        <a href="login.html" class="btn-custom btn-outline-custom btn-sm-custom">Login</a>
+        <a href="register.html" class="btn-custom btn-primary-gradient btn-sm-custom">Register</a>
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-compass"></i> Premier Travel & Tour Experiences
+      </div>
+      <h1 class="hero-title font-serif">Explore the World With Us</h1>
+      <p class="hero-subtitle">
+        Immerse yourself in breathtaking destinations, snow-capped Himalayas, tropical sun-kissed beaches, and majestic royal heritage. Unforgettable journeys await.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="destinations.html" class="btn-custom btn-primary-gradient btn-lg-custom">
+          <i class="fas fa-map-marked-alt"></i> Explore Destinations
+        </a>
+        <a href="packages.html" class="btn-custom btn-glass btn-lg-custom">
+          <i class="fas fa-suitcase-rolling"></i> View Tour Packages
+        </a>
+      </div>
+
+      <!-- Search Destination Bar -->
+      <div class="hero-search-box">
+        <div class="search-input-group">
+          <i class="fas fa-search" style="color: var(--primary);"></i>
+          <input type="text" id="hero-search-input" placeholder="Where do you want to explore? (e.g. Goa, Kashmir, Manali...)">
+        </div>
+        <div class="divider"></div>
+        <button id="hero-search-btn" class="btn-custom btn-accent-gradient" style="border-radius: var(--radius-xl);">
+          <i class="fas fa-search-location"></i> Search
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Destinations Preview -->
+  <section class="section-wrapper">
+    <div class="section-header">
+      <span class="section-tag">Top Destinations</span>
+      <h2 class="section-title">Popular Tourist Escapes</h2>
+      <p class="section-subtitle">
+        Curated dream vacations to India's most celebrated landscapes, hill stations, and royal cities.
+      </p>
+    </div>
+
+    <div class="cards-grid" id="popular-destinations-grid">
+      <!-- Populated dynamically via main.js -->
+      <div class="text-center" style="grid-column: 1/-1; padding: 2rem;">
+        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary);"></i>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 3.5rem; text-align: center;">
+      <a href="destinations.html" class="btn-custom btn-outline-custom">
+        View All Destinations <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured Tour Packages Preview -->
+  <section class="section-wrapper-fluid" style="background-color: #f1f5f9;">
+    <div class="section-wrapper" style="padding-top: 0; padding-bottom: 0;">
+      <div class="section-header">
+        <span class="section-tag">All-Inclusive Packages</span>
+        <h2 class="section-title">Featured Tour Packages</h2>
+        <p class="section-subtitle">
+          Handcrafted holiday itineraries including premium accommodations, guided sightseeing, and meal plans.
+        </p>
+      </div>
+
+      <div class="cards-grid" id="featured-packages-grid">
+        <!-- Populated dynamically via main.js -->
+        <div class="text-center" style="grid-column: 1/-1; padding: 2rem;">
+          <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary);"></i>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top: 3.5rem; text-align: center;">
+        <a href="packages.html" class="btn-custom btn-primary-gradient">
+          Browse All Holiday Packages <i class="fas fa-plane-departure"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="section-wrapper">
+    <div class="section-header">
+      <span class="section-tag">Why Travel With Us</span>
+      <h2 class="section-title">Crafting Unmatched Memories</h2>
+      <p class="section-subtitle">
+        We ensure every step of your travel experience is effortless, memorable, and safely managed.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-box">
+        <div class="feature-icon-wrapper">
+          <i class="fas fa-route"></i>
+        </div>
+        <h3 class="feature-title">Expert Itineraries</h3>
+        <p class="feature-desc">
+          Thoughtfully curated travel routes that maximize exploration time, scenic viewpoints, and authentic local culture.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <div class="feature-icon-wrapper">
+          <i class="fas fa-tag"></i>
+        </div>
+        <h3 class="feature-title">Best Price Guarantee</h3>
+        <p class="feature-desc">
+          Transparent pricing with no hidden charges. Verified budget to luxury packages giving you the finest value.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <div class="feature-icon-wrapper">
+          <i class="fas fa-headset"></i>
+        </div>
+        <h3 class="feature-title">24/7 Dedicated Support</h3>
+        <p class="feature-desc">
+          Our round-the-clock advisory and concierge desk stands ready to assist you throughout your journey.
+        </p>
+      </div>
+
+      <div class="feature-box">
+        <div class="feature-icon-wrapper">
+          <i class="fas fa-hotel"></i>
+        </div>
+        <h3 class="feature-title">Handpicked 4-Star Stays</h3>
+        <p class="feature-desc">
+          Quality-checked resort villas, heritage palaces, and mountain boutique hotels ensuring ultimate comfort.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews Section -->
+  <section class="section-wrapper-fluid" style="background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);">
+    <div class="section-wrapper" style="padding-top: 0; padding-bottom: 0;">
+      <div class="section-header">
+        <span class="section-tag">Traveler Stories</span>
+        <h2 class="section-title">What Our Guests Say</h2>
+        <p class="section-subtitle">
+          Real feedback from travelers who explored unforgettable destinations with us.
+        </p>
+      </div>
+
+      <div class="reviews-grid" id="reviews-grid">
+        <!-- Populated dynamically via main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Banner -->
+  <section class="section-wrapper" style="padding-top: 3rem; padding-bottom: 4rem;">
+    <div style="background: var(--primary-gradient); border-radius: var(--radius-xl); padding: 3.5rem 2rem; color: #fff; text-align: center; box-shadow: var(--shadow-xl); position: relative; overflow: hidden;">
+      <div style="max-width: 650px; margin: 0 auto; position: relative; z-index: 2;">
+        <h2 style="color: #fff; font-size: 2.4rem; margin-bottom: 1rem;">Ready for Your Next Great Adventure?</h2>
+        <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 2rem;">
+          Join thousands of satisfied explorers. Book your tailor-made holiday package today and experience memories for a lifetime.
+        </p>
+        <a href="booking.html" class="btn-custom btn-accent-gradient btn-lg-custom">
+          Book Your Trip Now <i class="fas fa-paper-plane"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo">
+          <i class="fas fa-globe-asia"></i>
+          <span>GlobeTrek</span>
+        </a>
+        <p class="footer-about">
+          GlobeTrek is an enterprise Tourism Management System dedicated to presenting the mesmerizing beauty, culture, and hospitality of world-class tourist destinations.
+        </p>
+        <div class="footer-social-links">
+          <a href="#" class="footer-social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social-link"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="footer-link"><i class="fas fa-angle-right"></i> Home</a></li>
+          <li><a href="destinations.html" class="footer-link"><i class="fas fa-angle-right"></i> Destinations</a></li>
+          <li><a href="packages.html" class="footer-link"><i class="fas fa-angle-right"></i> Tour Packages</a></li>
+          <li><a href="about.html" class="footer-link"><i class="fas fa-angle-right"></i> About Us</a></li>
+          <li><a href="contact.html" class="footer-link"><i class="fas fa-angle-right"></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Popular Escapes</h4>
+        <ul class="footer-links-list">
+          <li><a href="destination-details.html?id=1" class="footer-link"><i class="fas fa-umbrella-beach"></i> Goa Beaches</a></li>
+          <li><a href="destination-details.html?id=2" class="footer-link"><i class="fas fa-mountain"></i> Manali Hills</a></li>
+          <li><a href="destination-details.html?id=3" class="footer-link"><i class="fas fa-water"></i> Kashmir Valleys</a></li>
+          <li><a href="destination-details.html?id=4" class="footer-link"><i class="fas fa-archway"></i> Jaipur Palaces</a></li>
+          <li><a href="destination-details.html?id=5" class="footer-link"><i class="fas fa-ship"></i> Kerala Backwaters</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Contact Info</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Kundeshwar Palace, Sidhivinayak Nagar, Medankar Wadi, Chakan, Pune - 410501</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+91 9172534084</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>support@tourism-system.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-clock"></i>
+          <span>Mon - Sat: 9:00 AM - 8:00 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        &copy; 2026 Tourism Management System. All rights reserved.
+      </div>
+      <div>
+        Designed for College & Academic Capstone Presentation
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

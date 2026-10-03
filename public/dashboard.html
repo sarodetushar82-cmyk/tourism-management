@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traveler Dashboard - Tourism Management System</title>
+  <meta name="description" content="View your trip reservations, booking status, and manage your travel profile.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <i class="fas fa-globe-asia"></i>
+        <span>GlobeTrek</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+        <li><a href="packages.html" class="nav-link">Tour Packages</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Rendered dynamically by api.js -->
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- User Profile Header Banner -->
+  <div style="background: linear-gradient(135deg, #0f172a 0%, #0f766e 100%); color: #fff; padding: 3.5rem 1.5rem 2.5rem 1.5rem;">
+    <div class="section-wrapper" style="padding: 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;">
+      <div style="display: flex; align-items: center; gap: 1.5rem;">
+        <div id="dash-avatar-letter" style="width: 76px; height: 76px; border-radius: 50%; background: var(--accent-gradient); color: #fff; font-size: 2.2rem; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.25);">
+          U
+        </div>
+        <div>
+          <span style="font-size: 0.85rem; color: #5eead4; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Welcome back, Explorer</span>
+          <h1 id="dash-user-name" style="color: #fff; font-size: 2rem; margin: 0.2rem 0;">John Doe</h1>
+          <div style="display: flex; gap: 1.5rem; color: #cbd5e1; font-size: 0.9rem; flex-wrap: wrap;">
+            <span><i class="fas fa-envelope"></i> <span id="dash-user-email">john@example.com</span></span>
+            <span><i class="fas fa-phone"></i> <span id="dash-user-phone">+91 9876543210</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <a href="packages.html" class="btn-custom btn-accent-gradient btn-sm-custom">
+          <i class="fas fa-plus"></i> Book New Trip
+        </a>
+        <button onclick="Auth.logout()" class="btn-custom btn-glass btn-sm-custom">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Body -->
+  <main class="section-wrapper">
+    <!-- Quick Statistics Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+      <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 1rem;">
+        <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: #ccfbf1; color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+          <i class="fas fa-suitcase"></i>
+        </div>
+        <div>
+          <div id="stat-total-trips" style="font-size: 1.6rem; font-weight: 800; color: var(--text-main);">0</div>
+          <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Total Bookings</span>
+        </div>
+      </div>
+
+      <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 1rem;">
+        <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: #dbeafe; color: #1d4ed8; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+          <i class="fas fa-plane-departure"></i>
+        </div>
+        <div>
+          <div id="stat-upcoming-trips" style="font-size: 1.6rem; font-weight: 800; color: var(--text-main);">0</div>
+          <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Upcoming Trips</span>
+        </div>
+      </div>
+
+      <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 1rem;">
+        <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: #dcfce7; color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <div>
+          <div id="stat-completed-trips" style="font-size: 1.6rem; font-weight: 800; color: var(--text-main);">0</div>
+          <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Completed Trips</span>
+        </div>
+      </div>
+
+      <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 1rem;">
+        <div style="width: 50px; height: 50px; border-radius: var(--radius-md); background: #fee2e2; color: #dc2626; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+          <i class="fas fa-ban"></i>
+        </div>
+        <div>
+          <div id="stat-cancelled-trips" style="font-size: 1.6rem; font-weight: 800; color: var(--text-main);">0</div>
+          <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Cancelled</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Categories Navigation -->
+    <div style="display: flex; gap: 0.75rem; border-bottom: 2px solid var(--border-color); margin-bottom: 2rem; flex-wrap: wrap;">
+      <button class="dash-tab-btn active filter-pill" data-tab="all" style="border-radius: var(--radius-sm); border: none; border-bottom: 3px solid var(--primary);">
+        <i class="fas fa-list"></i> All My Bookings
+      </button>
+      <button class="dash-tab-btn filter-pill" data-tab="upcoming" style="border-radius: var(--radius-sm); border: none;">
+        <i class="fas fa-calendar-alt"></i> Upcoming Trips
+      </button>
+      <button class="dash-tab-btn filter-pill" data-tab="past" style="border-radius: var(--radius-sm); border: none;">
+        <i class="fas fa-history"></i> Completed Trips
+      </button>
+      <button class="dash-tab-btn filter-pill" data-tab="cancelled" style="border-radius: var(--radius-sm); border: none;">
+        <i class="fas fa-times-circle"></i> Cancelled
+      </button>
+    </div>
+
+    <!-- Bookings List Container -->
+    <div id="user-bookings-list">
+      <div style="text-align: center; padding: 3rem;">
+        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--primary);"></i>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo">
+          <i class="fas fa-globe-asia"></i>
+          <span>GlobeTrek</span>
+        </a>
+        <p class="footer-about">
+          GlobeTrek is an enterprise Tourism Management System dedicated to presenting the mesmerizing beauty, culture, and hospitality of world-class tourist destinations.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="footer-link"><i class="fas fa-angle-right"></i> Home</a></li>
+          <li><a href="destinations.html" class="footer-link"><i class="fas fa-angle-right"></i> Destinations</a></li>
+          <li><a href="packages.html" class="footer-link"><i class="fas fa-angle-right"></i> Tour Packages</a></li>
+          <li><a href="about.html" class="footer-link"><i class="fas fa-angle-right"></i> About Us</a></li>
+          <li><a href="contact.html" class="footer-link"><i class="fas fa-angle-right"></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Support</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+91 1800-200-8899 / +91 9876543210</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>support@tourism-system.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 Tourism Management System. All rights reserved.</div>
+      <div>Designed for College & Academic Capstone Presentation</div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

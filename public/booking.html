@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Tour - Tourism Management System</title>
+  <meta name="description" content="Reserve your holiday package and destinations with real-time price calculations and instant confirmation.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <i class="fas fa-globe-asia"></i>
+        <span>GlobeTrek</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+        <li><a href="packages.html" class="nav-link">Tour Packages</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Rendered dynamically by api.js -->
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <div style="background: linear-gradient(135deg, #0f172a 0%, #0f766e 100%); color: #fff; padding: 3.5rem 1.5rem 2.5rem 1.5rem; text-align: center;">
+    <div style="max-width: 700px; margin: 0 auto;">
+      <h1 style="color: #fff; font-size: 2.5rem; margin-bottom: 0.5rem;" class="font-serif">Reserve Your Dream Vacation</h1>
+      <p style="color: #cbd5e1; font-size: 1.05rem;">
+        Complete the booking details below. You will receive an instant booking reference and confirmation.
+      </p>
+    </div>
+  </div>
+
+  <main class="section-wrapper" style="max-width: 960px;">
+    <div class="form-card">
+      <form id="booking-form">
+        <h3 style="font-size: 1.35rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.6rem;">
+          <i class="fas fa-user-edit" style="color: var(--primary);"></i> 1. Traveler Information
+        </h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="user-name" class="form-label">Full Name *</label>
+            <input type="text" id="user-name" class="form-control-custom" placeholder="e.g. John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="user-email" class="form-label">Email Address *</label>
+            <input type="email" id="user-email" class="form-control-custom" placeholder="john@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="user-phone" class="form-label">Phone Number *</label>
+            <input type="tel" id="user-phone" class="form-control-custom" placeholder="+91 9876543210" required>
+          </div>
+          <div class="form-group">
+            <label for="travel-date" class="form-label">Departure / Travel Date *</label>
+            <input type="date" id="travel-date" class="form-control-custom" required>
+          </div>
+        </div>
+
+        <h3 style="font-size: 1.35rem; margin-top: 2rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.6rem;">
+          <i class="fas fa-map-marked" style="color: var(--primary);"></i> 2. Destination & Package Selection
+        </h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="booking-destination" class="form-label">Select Destination *</label>
+            <select id="booking-destination" class="form-control-custom" required>
+              <option value="">Loading destinations...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="booking-package" class="form-label">Select Tour Package *</label>
+            <select id="booking-package" class="form-control-custom" required>
+              <option value="">Loading packages...</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="travelers-count" class="form-label">Number of Travelers *</label>
+            <input type="number" id="travelers-count" class="form-control-custom" min="1" max="50" value="1" required>
+          </div>
+          <div class="form-group">
+            <label for="special-requests" class="form-label">Special Requests (Optional)</label>
+            <input type="text" id="special-requests" class="form-control-custom" placeholder="Meal preference, airport pickup, room type...">
+          </div>
+        </div>
+
+        <!-- Live Price Calculation Box -->
+        <div class="price-summary-box">
+          <div class="price-summary-row">
+            <span>Selected Package / Tour:</span>
+            <strong id="summary-package-name">Custom Tour</strong>
+          </div>
+          <div class="price-summary-row">
+            <span>Unit Price (Per Person):</span>
+            <span id="summary-unit-price">₹0</span>
+          </div>
+          <div class="price-summary-row">
+            <span>Number of Travelers:</span>
+            <span id="summary-travelers">1</span>
+          </div>
+          <div class="price-summary-row price-summary-total">
+            <span>Estimated Total Amount:</span>
+            <span id="summary-total-price">₹0</span>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; align-items: center; margin-top: 1.5rem;">
+          <a href="packages.html" class="btn-custom btn-outline-custom">Cancel</a>
+          <button type="submit" id="submit-booking-btn" class="btn-custom btn-accent-gradient btn-lg-custom">
+            <i class="fas fa-check-circle"></i> Confirm & Submit Booking
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Confirmation Modal -->
+  <div id="booking-success-modal" class="admin-modal-overlay">
+    <div class="admin-modal" style="text-align: center; padding: 2.5rem 2rem;">
+      <div style="width: 80px; height: 80px; background: #d1fae5; color: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem auto;">
+        <i class="fas fa-check"></i>
+      </div>
+      <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Booking Confirmed!</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.75rem;">
+        Your travel reservation has been successfully received by our concierge desk.
+      </p>
+
+      <div style="background: var(--bg-body); border-radius: var(--radius-md); padding: 1.5rem; text-align: left; margin-bottom: 2rem; border: 1px solid var(--border-color);">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem;">
+          <span style="color: var(--text-muted);">Booking Reference:</span>
+          <strong id="conf-ref-number" style="color: var(--primary); font-size: 1.05rem;">TRV-2026-000</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem;">
+          <span style="color: var(--text-muted);">Tour Package:</span>
+          <strong id="conf-pkg-name">Package Name</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem;">
+          <span style="color: var(--text-muted);">Travel Date:</span>
+          <span id="conf-date">2026-11-15</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.6rem;">
+          <span style="color: var(--text-muted);">Travelers:</span>
+          <span id="conf-travelers">2</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 0.75rem; margin-top: 0.75rem;">
+          <strong style="color: var(--text-main);">Total Cost:</strong>
+          <strong id="conf-price" style="color: var(--primary); font-size: 1.25rem;">₹0</strong>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="dashboard.html" class="btn-custom btn-primary-gradient">
+          <i class="fas fa-tachometer-alt"></i> View in Dashboard
+        </a>
+        <a href="index.html" class="btn-custom btn-outline-custom">
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo">
+          <i class="fas fa-globe-asia"></i>
+          <span>GlobeTrek</span>
+        </a>
+        <p class="footer-about">
+          GlobeTrek is an enterprise Tourism Management System dedicated to presenting the mesmerizing beauty, culture, and hospitality of world-class tourist destinations.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html" class="footer-link"><i class="fas fa-angle-right"></i> Home</a></li>
+          <li><a href="destinations.html" class="footer-link"><i class="fas fa-angle-right"></i> Destinations</a></li>
+          <li><a href="packages.html" class="footer-link"><i class="fas fa-angle-right"></i> Tour Packages</a></li>
+          <li><a href="about.html" class="footer-link"><i class="fas fa-angle-right"></i> About Us</a></li>
+          <li><a href="contact.html" class="footer-link"><i class="fas fa-angle-right"></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Support</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <span>+91 9172534084</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>support@tourism-system.com</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 Tourism Management System. All rights reserved.</div>
+      <div>Designed for College & Academic Capstone Presentation</div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>
